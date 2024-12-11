@@ -1,7 +1,73 @@
 <!doctype html>
-<title>Upload File</title>
-<h1>Upload File</h1>
-<form action="/upload" method="post" enctype="multipart/form-data">
-  <input type="file" name="file">
-  <input type="submit" value="Upload">
-</form>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000; /* Black background */
+            color: #fff; /* White text for contrast */
+        }
+        .card {
+            background-color: #333; /* Grey background for the card */
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+        }
+        .form-control {
+            background-color: #555; /* Dark grey for input fields */
+            border: 1px solid #666;
+            color: #fff;
+        }
+        .form-control::placeholder {
+            color: #aaa;
+        }
+        .btn-primary {
+            background-color: #ff5722; /* Orange button */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #e64a19; /* Darker orange on hover */
+        }
+        .alert {
+            background-color: #444; /* Subtle alert background */
+            border: none;
+            color: #ff5722;
+        }
+        h1 {
+            font-family: 'Arial', sans-serif;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Upload Your File</h1>
+        <div class="card p-4 shadow-lg">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success text-center" role="alert">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+            {% endwith %}
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Choose file:</label>
+                    <input type="file" name="file" id="file" class="form-control" placeholder="Select a file to upload">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Upload</button>
+            </form>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
